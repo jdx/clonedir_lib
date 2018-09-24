@@ -25,8 +25,6 @@ use std::path::Path;
 /// }
 /// ```
 pub fn clonedir<A: AsRef<Path>, B: AsRef<Path>>(from: A, to: B) -> io::Result<()> {
-    env_logger::init();
-
     let from = from.as_ref();
     let to = to.as_ref();
     debug!("cloning dir {:?} to {:?}", &from, &to);
