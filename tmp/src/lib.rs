@@ -25,12 +25,8 @@ use std::path::Path;
 /// }
 /// ```
 pub fn clonedir<A: AsRef<Path>, B: AsRef<Path>>(from: A, to: B) -> io::Result<()> {
-    env_logger::init();
-
     let from = from.as_ref();
     let to = to.as_ref();
-    println!("cloning dir {:?} to {:?}", &from, &to);
-    error!("cloning dir {:?} to {:?}", &from, &to);
     debug!("cloning dir {:?} to {:?}", &from, &to);
     for f in fs::read_dir(from)?.into_iter().map(|f| f.unwrap().path()) {
         fs::create_dir_all(&to)?;
