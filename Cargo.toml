@@ -2,6 +2,9 @@
 name = "clonedir_lib"
 version = "0.1.0"
 authors = ["Jeff Dickey <@jdxcode>"]
+license = "MIT"
+description = "clone a directory with copy-on-write"
+repository = "https://github.com/jdxcode/clonedir_lib"
 
 [dependencies]
 reflink = "0.1.2"
