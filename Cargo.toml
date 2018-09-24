@@ -1,6 +1,6 @@
 [package]
 name = "clonedir_lib"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jeff Dickey <@jdxcode>"]
 license = "MIT"
 description = "clone a directory with copy-on-write"
