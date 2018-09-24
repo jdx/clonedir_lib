@@ -1,4 +1,6 @@
 extern crate reflink;
+#[macro_use] extern crate log;
+extern crate env_logger;
 
 use reflink::reflink_or_copy;
 use std::convert::AsRef;
@@ -23,15 +25,17 @@ use std::path::Path;
 /// }
 /// ```
 pub fn clonedir<A: AsRef<Path>, B: AsRef<Path>>(from: A, to: B) -> io::Result<()> {
+    env_logger::init();
+
     let from = from.as_ref();
     let to = to.as_ref();
-    println!("cloning dir {:?} to {:?}", &from, &to);
+    debug!("cloning dir {:?} to {:?}", &from, &to);
     for f in fs::read_dir(from)?.into_iter().map(|f| f.unwrap().path()) {
         fs::create_dir_all(&to)?;
         if f.is_dir() {
             clonedir(&f, &to)?;
         } else if f.is_file() {
-            println!("cloning {:?} to {:?}", &f, &to);
+            debug!("cloning {:?} to {:?}", &f, &to);
             reflink_or_copy(&f, to.join(f.file_name().unwrap()))?;
         }
     }
